@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2E7D32"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPantry"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" android:padding="8dp" />
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_centerInParent="true" android:padding="24dp"
+        android:gravity="center" android:textSize="16sp"
+        android:text="Your pantry is empty. Tap + to add your first ingredient." />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:contentDescription="Add ingredient"
+        app:srcCompat="@android:drawable/ic_input_add" />
+</RelativeLayout>
