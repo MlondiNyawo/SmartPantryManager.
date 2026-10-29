@@ -97,8 +97,8 @@ public class AddEditItemActivity extends BaseActivity {
             etQty.setError("Enter a valid number");
             return;
         }
-        if (qty <= 0 || qty > 100000) {
-            etQty.setError("Quantity must be greater than 0");
+        if (!Double.isFinite(qty) || qty <= 0 || qty > 100000) {
+            etQty.setError("Quantity must be greater than 0 and no more than 100,000");
             return;
         }
 
