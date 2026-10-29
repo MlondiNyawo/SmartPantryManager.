@@ -109,10 +109,16 @@ public class AddEditItemActivity extends BaseActivity {
         item.setExpiry(expiry);
 
         if (editing != null) {
-            db.updateItem(item);
+            if (db.updateItem(item) != 1) {
+                Toast.makeText(this, "Could not update ingredient", Toast.LENGTH_LONG).show();
+                return;
+            }
             Toast.makeText(this, "Ingredient updated", Toast.LENGTH_SHORT).show();
         } else {
-            db.insertItem(item);
+            if (db.insertItem(item) == -1) {
+                Toast.makeText(this, "Could not add ingredient", Toast.LENGTH_LONG).show();
+                return;
+            }
             Toast.makeText(this, "Ingredient added", Toast.LENGTH_SHORT).show();
         }
         finish();
