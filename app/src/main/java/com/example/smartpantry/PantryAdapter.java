@@ -80,6 +80,10 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
                 }
             }
         }
+        h.btnEdit.setContentDescription(
+                h.itemView.getContext().getString(R.string.edit_item_accessibility, item.getName()));
+        h.btnDelete.setContentDescription(
+                h.itemView.getContext().getString(R.string.delete_item_accessibility, item.getName()));
         h.btnEdit.setOnClickListener(v -> listener.onEdit(item));
         h.btnDelete.setOnClickListener(v -> listener.onDelete(item));
     }
