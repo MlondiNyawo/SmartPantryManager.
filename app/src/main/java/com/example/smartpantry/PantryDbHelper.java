@@ -72,19 +72,18 @@ public class PantryDbHelper extends SQLiteOpenHelper {
 
     public List<PantryItem> getAllItems() {
         List<PantryItem> list = new ArrayList<>();
-        Cursor c = getReadableDatabase().query("pantry", null, null, null, null, null,
-                "name COLLATE NOCASE");
-        while (c.moveToNext()) list.add(fromCursor(c));
-        c.close();
+        try (Cursor c = getReadableDatabase().query("pantry", null, null, null, null, null,
+                "name COLLATE NOCASE")) {
+            while (c.moveToNext()) list.add(fromCursor(c));
+        }
         return list;
     }
 
     public PantryItem getItem(long id) {
-        Cursor c = getReadableDatabase().query("pantry", null, "id = ?",
-                new String[]{String.valueOf(id)}, null, null, null);
-        PantryItem item = c.moveToFirst() ? fromCursor(c) : null;
-        c.close();
-        return item;
+        try (Cursor c = getReadableDatabase().query("pantry", null, "id = ?",
+                new String[]{String.valueOf(id)}, null, null, null)) {
+            return c.moveToFirst() ? fromCursor(c) : null;
+        }
     }
 
     private ContentValues toValues(PantryItem item) {
@@ -111,34 +110,33 @@ public class PantryDbHelper extends SQLiteOpenHelper {
     public List<Recipe> getAllRecipes() {
         List<Recipe> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query("recipes", null, null, null, null, null, "name");
-        while (c.moveToNext()) list.add(loadRecipe(db, c));
-        c.close();
+        try (Cursor c = db.query("recipes", null, null, null, null, null, "name")) {
+            while (c.moveToNext()) list.add(loadRecipe(db, c));
+        }
         return list;
     }
 
     public Recipe getRecipe(long id) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query("recipes", null, "id = ?", new String[]{String.valueOf(id)},
-                null, null, null);
-        Recipe r = c.moveToFirst() ? loadRecipe(db, c) : null;
-        c.close();
-        return r;
+        try (Cursor c = db.query("recipes", null, "id = ?", new String[]{String.valueOf(id)},
+                null, null, null)) {
+            return c.moveToFirst() ? loadRecipe(db, c) : null;
+        }
     }
 
     private Recipe loadRecipe(SQLiteDatabase db, Cursor c) {
         long id = c.getLong(c.getColumnIndexOrThrow("id"));
         Recipe r = new Recipe(id, c.getString(c.getColumnIndexOrThrow("name")),
                 c.getString(c.getColumnIndexOrThrow("steps")));
-        Cursor ic = db.query("recipe_ingredients", null, "recipe_id = ?",
-                new String[]{String.valueOf(id)}, null, null, "id");
-        while (ic.moveToNext()) {
-            r.getIngredients().add(new RecipeIngredient(
-                    ic.getString(ic.getColumnIndexOrThrow("name")),
-                    ic.getDouble(ic.getColumnIndexOrThrow("quantity")),
-                    ic.getString(ic.getColumnIndexOrThrow("unit"))));
+        try (Cursor ic = db.query("recipe_ingredients", null, "recipe_id = ?",
+                new String[]{String.valueOf(id)}, null, null, "id")) {
+            while (ic.moveToNext()) {
+                r.getIngredients().add(new RecipeIngredient(
+                        ic.getString(ic.getColumnIndexOrThrow("name")),
+                        ic.getDouble(ic.getColumnIndexOrThrow("quantity")),
+                        ic.getString(ic.getColumnIndexOrThrow("unit"))));
+            }
         }
-        ic.close();
         return r;
     }
 
