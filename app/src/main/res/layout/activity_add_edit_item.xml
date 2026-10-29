@@ -8,25 +8,28 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#2E7D32"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="16dp">
-        <EditText android:id="@+id/etName" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Ingredient name (e.g. tomato)"
-            android:inputType="textCapWords" />
-        <EditText android:id="@+id/etQty" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Quantity"
-            android:inputType="numberDecimal" />
-        <TextView android:id="@+id/tvUnitLabel" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginTop="12dp"
-            android:labelFor="@id/spUnit" android:text="Unit" />
-        <Spinner android:id="@+id/spUnit" android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button android:id="@+id/btnExpiry" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_marginTop="12dp" />
-        <Button android:id="@+id/btnClearExpiry" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:text="Clear expiry date" />
-        <Button android:id="@+id/btnSave" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_marginTop="16dp"
-            android:text="Save" />
-    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+            <EditText android:id="@+id/etName" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Ingredient name (e.g. tomato)"
+                android:inputType="textCapWords" />
+            <EditText android:id="@+id/etQty" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Quantity"
+                android:inputType="numberDecimal" />
+            <TextView android:id="@+id/tvUnitLabel" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:labelFor="@id/spUnit" android:text="Unit" />
+            <Spinner android:id="@+id/spUnit" android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnExpiry" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp" />
+            <Button android:id="@+id/btnClearExpiry" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Clear expiry date" />
+            <Button android:id="@+id/btnSave" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:text="Save" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
