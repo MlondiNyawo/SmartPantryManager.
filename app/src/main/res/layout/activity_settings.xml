@@ -13,7 +13,8 @@
         <Switch android:id="@+id/swExpiry" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:text="Highlight items expiring soon (3 days)" />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" android:text="Default unit for new ingredients" />
+            android:layout_marginTop="24dp" android:labelFor="@id/spDefaultUnit"
+            android:text="Default unit for new ingredients" />
         <Spinner android:id="@+id/spDefaultUnit" android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
