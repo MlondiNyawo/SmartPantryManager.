@@ -66,9 +66,13 @@ public class PantryListActivity extends BaseActivity implements PantryAdapter.Li
                 .setTitle("Delete ingredient")
                 .setMessage("Remove " + item.getName() + " from your pantry?")
                 .setPositiveButton("Delete", (d, w) -> {
-                    db.deleteItem(item.getId());
+                    int deletedRows = db.deleteItem(item.getId());
                     refresh();
-                    Toast.makeText(this, item.getName() + " deleted", Toast.LENGTH_SHORT).show();
+                    String message = deletedRows == 1
+                            ? item.getName() + " deleted"
+                            : "Could not delete " + item.getName();
+                    Toast.makeText(this, message,
+                            deletedRows == 1 ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG).show();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
