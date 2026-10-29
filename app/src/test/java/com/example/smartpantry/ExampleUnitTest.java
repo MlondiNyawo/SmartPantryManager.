@@ -2,16 +2,14 @@ package com.example.smartpantry;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Unit tests for application logic that does not require the Android runtime.
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void normaliseName_handlesCaseSpacingAndPlural() {
+        assertEquals("tomato", RecipeMatcher.normaliseName("  TOMATOES  "));
     }
 }
